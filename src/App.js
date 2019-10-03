@@ -1,7 +1,15 @@
 import React from 'react';
 
+import GlobalStyle from './styles/global';
+import Repositories from './components/Repositories/index';
+
 function App() {
-  return <h1>Hello, React Redux</h1>;
+  return (
+    <>
+      <Repositories />
+      <GlobalStyle />
+    </>
+  );
 }
 
 export default App;
