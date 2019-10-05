@@ -1,16 +1,21 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { addRepository } from '../../store/modules/repository/actions';
 
 import { Container } from './styles';
 
 export default function Repositories() {
   const repositories = useSelector(state => state.repository.repositories);
+  const dispatch = useDispatch();
 
   function handleAddRepository(event) {
-    event.preventDefault();
-    console.log('testando ação');
-    console.log(event.target.repository.value);
-    event.target.repository.value = null;
+    if (event) {
+      event.preventDefault();
+      const form = event.target;
+      dispatch(addRepository(form.repository.value));
+      form.repository.value = null;
+    }
   }
 
   return (
