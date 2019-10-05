@@ -1,10 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 
 import { Container } from './styles';
 
 export default function Repositories() {
-  function handleAddRepository() {
+  const repositories = useSelector(state => state.repository.repositories);
+
+  function handleAddRepository(event) {
+    event.preventDefault();
     console.log('testando ação');
+    console.log(event.target.repository.value);
+    event.target.repository.value = null;
   }
 
   return (
@@ -22,32 +28,35 @@ export default function Repositories() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="columnText">jonatas/study-react-redux</td>
-              <td className="columnButtons">
-                <button type="button" className="btnEdit">
-                  editar
-                </button>
-              </td>
-              <td className="columnButtons">
-                <button type="button" className="btnDelete">
-                  remover
-                </button>
-              </td>
-            </tr>
-            <tr>
-              <td className="columnText">jonatas/study-react-redux-github</td>
-              <td className="columnButtons">
-                <button type="button" className="btnEdit">
-                  editar
-                </button>
-              </td>
-              <td className="columnButtons">
-                <button type="button" className="btnDelete">
-                  remover
-                </button>
-              </td>
-            </tr>
+            {repositories ? (
+              repositories.map(repository => (
+                <tr key={repository.id}>
+                  <td className="columnText">
+                    <a
+                      href={`https://github.com/${repository.full_name}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {repository.full_name}
+                    </a>
+                  </td>
+                  <td className="columnButtons">
+                    <button type="button" className="btnEdit">
+                      editar
+                    </button>
+                  </td>
+                  <td className="columnButtons">
+                    <button type="button" className="btnDelete">
+                      remover
+                    </button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan={3}>Não há</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

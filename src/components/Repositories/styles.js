@@ -28,6 +28,14 @@ export const Container = styled.div`
     td {
       border-top: 1px solid #333;
       padding: 10px 10px 5px 10px;
+
+      a {
+        color: #999;
+
+        &:hover {
+          color: #fff;
+        }
+      }
     }
     .columnText {
       text-align: left;
