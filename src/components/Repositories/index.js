@@ -1,7 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { addRepository } from '../../store/modules/repository/actions';
+import {
+  addRepository,
+  removeRepository,
+} from '../../store/modules/repository/actions';
 
 import { Container } from './styles';
 
@@ -16,6 +19,10 @@ export default function Repositories() {
       dispatch(addRepository(form.repository.value));
       form.repository.value = null;
     }
+  }
+
+  function handleRemoveRepository(id) {
+    dispatch(removeRepository(id));
   }
 
   return (
@@ -51,7 +58,11 @@ export default function Repositories() {
                     </button>
                   </td>
                   <td className="columnButtons">
-                    <button type="button" className="btnDelete">
+                    <button
+                      type="button"
+                      className="btnDelete"
+                      onClick={() => handleRemoveRepository(repository.id)}
+                    >
                       remover
                     </button>
                   </td>

@@ -1,4 +1,4 @@
-import { REPOSITORY_ADD } from '../actionsTypes';
+import { REPOSITORY_ADD, REPOSITORY_REMOVE } from '../actionsTypes';
 
 const INITIAL_STATE = {
   repositories: [
@@ -22,6 +22,12 @@ export default function repository(state = INITIAL_STATE, action) {
       return {
         state,
         repositories: [...state.repositories, newRepo],
+      };
+    }
+    case REPOSITORY_REMOVE: {
+      const { id } = action.payload;
+      return {
+        repositories: state.repositories.filter(item => item.id !== id),
       };
     }
     default:
