@@ -43,19 +43,9 @@ export const Container = styled.div`
     .columnButtons {
       text-align: right;
     }
-    .btnEdit {
-      color: #fff;
-      background: #f06;
-      border: 0;
-      border-radius: 4px;
-      width: 80px;
-      height: 25px;
-      font-weight: bold;
-      align-self: flex-end;
-    }
     .btnDelete {
       color: #fff;
-      background: #3b9eff;
+      background: #f06;
       border: 0;
       border-radius: 4px;
       width: 80px;

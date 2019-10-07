@@ -16,6 +16,10 @@ export default function Repositories() {
     if (event) {
       event.preventDefault();
       const form = event.target;
+      if (!form.repository || !form.repository.value) {
+        alert('Preenchimento obrigatório');
+        return;
+      }
       dispatch(addRepository(form.repository.value));
       form.repository.value = null;
     }
@@ -51,11 +55,6 @@ export default function Repositories() {
                     >
                       {repository.full_name}
                     </a>
-                  </td>
-                  <td className="columnButtons">
-                    <button type="button" className="btnEdit">
-                      editar
-                    </button>
                   </td>
                   <td className="columnButtons">
                     <button
